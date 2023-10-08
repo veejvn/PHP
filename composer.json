@@ -1,0 +1,26 @@
+{
+    "name": "hoangve/mvc",
+    "description": "MVC",
+    "type": "project",
+    "require": {
+        "illuminate/database": "^10.25",
+        "league/plates": "^3.5",
+        "illuminate/config": "^10.25"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Hoang Ve",
+            "email": "veb2111829@student.ctu.edu.vn"
+        }
+    ],
+    "minimum-stability": "stable"
+}
