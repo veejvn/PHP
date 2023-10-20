@@ -4,9 +4,9 @@
         'db' => [
             'driver' => 'mysql',
             'host' => 'localhost',
-            'databate' => 'estore',
+            'database' => 'estore',
             'username' => 'root',
-            'password' => 'mysql',
+            'password' => '',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',

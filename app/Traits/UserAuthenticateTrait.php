@@ -1,8 +1,22 @@
 <?php
-namespace App\Tranis;
+namespace App\Traits;
+
+use App\Models\User;
 
 trait UserAuthenticateTrait{
+    /**
+     * @param array $credentials
+     * @return \Auth\Models\User|mixed|null
+     */
     public function authenticate($credentials){
-        return false;
+        $user = User::where(['username' => $credentials['username']])->first();
+        if($user){
+            //kiem tra mat khau nhap voi mat khau da bam trong csdl
+            if(password_check($credentials['password'], $user->password)){
+                return $user;
+            }
+            return null;
+        }
+        return null;
     }
 }
