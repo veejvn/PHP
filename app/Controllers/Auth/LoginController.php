@@ -26,9 +26,9 @@ class LoginController extends BaseController{
                 $str = serialize($credentials);
                 //hàm mã hóa chuỗi trong helpers
                 $enctypted = encrypt($str, ENCRYPTION_KEY);
-                setcookie('credentials', $enctypted, mktime(23, 59, 59, 12, 1, 2023));
+                setcookie('credentials', $enctypted, time() + (86400 * 30));
             }
-            redirect('/home');
+            redirect("/home");
         }
         $error[] = 'Username or password is invalid!';
         return $this->render('auth/login', ['errors' => $error]);
@@ -39,5 +39,9 @@ class LoginController extends BaseController{
             'username' => $_POST['username'] ?? null,
             'password' => $_POST['password'] ?? null
         ];
+    }
+    public function logout(){
+        $this->signout();
+        redirect('/home');
     }
  }
