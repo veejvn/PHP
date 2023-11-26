@@ -20,7 +20,8 @@ trait UserAuthenticateTrait{
         return null;
     }
     public function signout(){
-        unset($_SESSION['user']);
+        //unset($_SESSION['user']);
+        session()->remove('user');
         if(isset($_COOKIE['credentials'])){
             setcookie('credentials', null, time() - 3600);
         }

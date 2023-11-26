@@ -9,7 +9,7 @@ class LoginController extends BaseController{
 
     public function showLoginFrom(){
         if(check_login() == true){
-            redirect("/home");
+            $this->redirect("/home");
         }
         $error = [];
         return $this->render('auth/login');
@@ -20,7 +20,8 @@ class LoginController extends BaseController{
         $user = $this->authenticate($credentials);
         if($user){
             $user->password = null;
-            $_SESSION['user'] = serialize($user);//chuyển model sang chuỗi
+            //$_SESSION['user'] = serialize($user);//chuyển model sang chuỗi
+            session()->set('user', serialize($user));
             if(isset($_POST['remember_me'])){
                 //chuyển mảng sang chuỗi để mã hóa
                 $str = serialize($credentials);
@@ -28,7 +29,9 @@ class LoginController extends BaseController{
                 $enctypted = encrypt($str, ENCRYPTION_KEY);
                 setcookie('credentials', $enctypted, time() + (86400 * 30));
             }
-            redirect("/home");
+            session()->setFlash(\FLASH::SUCCESS, 'Login successfully');
+            //redirect("/home");
+            $this->redirect("/home");
         }
         $error[] = 'Username or password is invalid!';
         return $this->render('auth/login', ['errors' => $error]);
@@ -42,6 +45,7 @@ class LoginController extends BaseController{
     }
     public function logout(){
         $this->signout();
-        redirect('/home');
+        $this->session->setFlash(\FLASH::INFO, 'Bye!');
+        $this->redirect('/home');
     }
  }

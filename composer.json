@@ -5,7 +5,10 @@
     "require": {
         "illuminate/database": "^10.25",
         "league/plates": "^3.5",
-        "illuminate/config": "^10.25"
+        "illuminate/config": "^10.25",
+        "symfony/http-foundation": "^6.3",
+        "symfony/var-dumper": "^6.3",
+        "illuminate/pagination": "^10.31"
     },
     "license": "MIT",
     "autoload": {

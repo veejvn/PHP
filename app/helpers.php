@@ -79,8 +79,55 @@ if(!function_exists('auth')){
      * @return \App\Models\User|mixed
      */
     function auth(){
-        $userSerialized = $_SESSION['user'] ?? null;
+        //$userSerialized = $_SESSION['user'] ?? null;
+        $userSerialized = session()->get('user');
         $user = $userSerialized ? unserialize($userSerialized) : null;
         return $user;
     }
+}
+if(!function_exists('session')){
+    /**
+     * Tra ve symfony session object
+     * 
+     * @return \App\Http\Session\Session
+     */
+    function session(){
+        /**
+         * @var \App\Http\Session\Session
+         */
+        $session = $GLOBALS['session'];
+        return $session;
+    }
+}
+if(!function_exists('cookie')){
+    /**
+     * Tra ve cookie duoc browser submit kem theo
+     * 
+     * @return \Symfony\Component\HttpFoundation\InputBag
+     * 
+     */
+    function cookie(){
+        $cookies = request()->cookies;
+        return $cookies;
+    }
+}
+if(!function_exists('request')){
+    /**
+     * Return trquest handler
+     * 
+     * @return \App\Http\Request
+     */
+    function request(){
+        /**
+         * @var \App\Http\Request
+         */
+        $request = $GLOBALS['request'];
+        return $request;
+    }
+}
+class FLASH{
+    public const SUCCESS = 'success';
+    public const WARNING = 'warning';
+    public const INFO = 'info';
+    public const ERROR = 'error';
 }
